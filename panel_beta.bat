@@ -1,4 +1,29 @@
 @echo off
+setlocal
+
+:: Definicje adresów URL i nazw plików
+set "url=https://raw.githubusercontent.com/zupekxyz/zupek-panel/a352383810038d50ab1f9513c751b46193da3073/panel_beta.bat"
+set "local_file=%~f0"
+set "temp_file=%temp%\update_temp.bat"
+
+:: Pobieranie nowej wersji do pliku tymczasowego
+powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%url%', '%temp_file%')"
+
+:: Sprawdzenie, czy nowy plik się różni
+fc /b "%local_file%" "%temp_file%" >nul
+if %errorlevel% equ 1 (
+    echo Nowa wersja dostępna. Aktualizacja...
+    copy /Y "%temp_file%" "%local_file%" >nul
+    echo Aktualizacja zakończona. Uruchamianie ponownie...
+    start "" "%local_file%"
+    exit /b
+) else (
+    echo Masz już najnowszą wersję.
+)
+
+:: Dalszy kod Twojego skryptu...
+
+@echo off
 title Pc panel / opt
 
 :: Konsola powitalna
