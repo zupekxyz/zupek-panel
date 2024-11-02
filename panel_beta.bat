@@ -21,7 +21,7 @@ if %errorlevel% equ 1 (
     echo Masz już najnowszą wersję.
 )
 
-:: Dalszy kod Twojego skryptu...
+:: Dalszy kod 
 
 @echo off
 title Pc panel / opt
@@ -56,7 +56,7 @@ echo ============================================================
 echo                Zaawansowany System Konsoli
 echo ============================================================
 echo.
-echo [?] Ostatni update: 02.11.2024  22:12
+echo [?] Ostatni update: 02.11.2024  00:55
 echo [-] 0.1 Beta 
 echo [+] Dodano Auto update!
 echo [+] Dodano sekcje kolorow
