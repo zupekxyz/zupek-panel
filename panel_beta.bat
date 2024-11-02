@@ -58,7 +58,7 @@ echo ============================================================
 echo.
 echo [?] Ostatni update: 02.11.2024  22:12
 echo [-] 0.1 Beta 
-echo [+] Dodano Dodatkowe Ustawienia optymalizacyjne 
+echo [+] Dodano Auto update!
 echo [+] Dodano sekcje kolorow
 echo [+] Dodano sekcje Pingu  
 echo.
@@ -424,7 +424,7 @@ echo ============================================================
 echo                  Tworca
 echo ============================================================
 echo Autor: zupekk
-echo Wersja: 0.1
+echo Wersja: 0.1 Beta
 echo Bio: guns.lol/zupek
 echo.
 pause
