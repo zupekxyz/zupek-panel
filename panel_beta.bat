@@ -1,13 +1,20 @@
 @echo off
 setlocal
 
-:: Definicje adresów URL i nazw plików
-set "url=https://raw.githubusercontent.com/zupekxyz/zupek-panel/refs/heads/main/panel_beta.bat"
+:: def
+set "url=https://raw.githubusercontent.com/zupekxyz/zupek-panel/main/panel_beta/update.bat"
 set "local_file=%~f0"
 set "temp_file=%temp%\update_temp.bat"
 
+echo Sprawdzanie aktualizacji...
+
 :: Pobieranie nowej wersji do pliku tymczasowego
 powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%url%', '%temp_file%')"
+if %errorlevel% neq 0 (
+    echo Wystąpił problem podczas pobierania pliku. Sprawdź adres URL.
+    pause
+    exit /b
+)
 
 :: Sprawdzenie, czy nowy plik się różni
 fc /b "%local_file%" "%temp_file%" >nul
@@ -19,9 +26,11 @@ if %errorlevel% equ 1 (
     exit /b
 ) else (
     echo Masz już najnowszą wersję.
+    del "%temp_file%"
 )
 
 :: Dalszy kod 
+
 
 @echo off
 title Pc panel / opt
