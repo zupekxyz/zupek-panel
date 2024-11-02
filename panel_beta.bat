@@ -2,7 +2,7 @@
 setlocal
 
 :: Definicje adresów URL i nazw plików
-set "url=https://raw.githubusercontent.com/zupekxyz/zupek-panel/a352383810038d50ab1f9513c751b46193da3073/panel_beta.bat"
+set "url=https://raw.githubusercontent.com/zupekxyz/zupek-panel/refs/heads/main/panel_beta.bat"
 set "local_file=%~f0"
 set "temp_file=%temp%\update_temp.bat"
 
