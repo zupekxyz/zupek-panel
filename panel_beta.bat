@@ -2,7 +2,7 @@
 setlocal
 
 :: def
-set "https://raw.githubusercontent.com/zupekxyz/zupek-panel/refs/heads/main/panel_beta.bat"
+set "url=https://raw.githubusercontent.com/zupekxyz/zupek-panel/refs/heads/main/panel_beta.bat"
 set "local_file=%~f0"
 set "temp_file=%temp%\update_temp.bat"
 
