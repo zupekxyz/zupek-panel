@@ -64,12 +64,12 @@ echo ============================================================
 echo                Zaawansowany System Konsoli
 echo ============================================================
 echo.
-echo [?] Ostatni update: 03.11.2024  22:30
-echo [-] 0.1 Beta 
+echo [?] Ostatni update: 03.11.2024  23:38
+echo [-] 0.5 Beta 
 echo [+] Dodano Auto update!
 echo [+] Update wybierania pingu
 echo [+] wprowadzono poprawki w kilku punktach!
-echo [✯] Discord: ????
+echo [✯] !!! Discord: https://discord.gg/Z2cJ6Vnq3k !!!
 echo.
 echo [1] Przegladanie plikow i folderow
 echo [2] Tworzenie kopii zapasowej pliku
@@ -468,8 +468,8 @@ echo.
 echo [*] Stworzone przez: zupek
 echo [*] Bio: guns.lol/zupek
 echo [*] Data wydania: ???
-echo [*] Wersja: 0.1 Beta
-echo [*] Discord: ???
+echo [*] Wersja: 0.5 Beta
+echo [*] Discord: https://discord.gg/Z2cJ6Vnq3k
 echo.
 pause
 goto :MenuGlowna
@@ -479,3 +479,4 @@ goto :MenuGlowna
 echo Dziekujemy za skorzystanie z systemu Beta! 
 pause
 exit
+
