@@ -31,7 +31,6 @@ if %errorlevel% equ 1 (
 
 :: Dalszy kod 
 
-
 @echo off
 title Pc panel / opt
 
@@ -65,11 +64,12 @@ echo ============================================================
 echo                Zaawansowany System Konsoli
 echo ============================================================
 echo.
-echo [?] Ostatni update: 02.11.2024  00:55
+echo [?] Ostatni update: 03.11.2024  22:30
 echo [-] 0.1 Beta 
 echo [+] Dodano Auto update!
-echo [+] Dodano sekcje kolorow
-echo [+] Dodano sekcje Pingu  
+echo [+] Update wybierania pingu
+echo [+] wprowadzono poprawki w kilku punktach!
+echo [✯] Discord: ????
 echo.
 echo [1] Przegladanie plikow i folderow
 echo [2] Tworzenie kopii zapasowej pliku
@@ -86,7 +86,7 @@ echo [12] Wybor koloru konsoli
 echo [13] Tworca
 echo [14] Wyjscie
 echo.
-set /p "wybor= Wybierz opcje (1-13): "
+set /p "wybor= Wybierz opcje (1-14): "
 if "%wybor%"=="1" goto :Przegladanie
 if "%wybor%"=="2" goto :KopiaZapasowa
 if "%wybor%"=="3" goto :WyswietlDziennik
@@ -230,20 +230,20 @@ echo [1] Optymalizacja połączenia internetowego
 echo [2] Optymalizacja wydajności systemu
 echo [3] Powrot do menu glownego
 echo.
-set /p "opcje= Wybierz opcje (1-3): "
-if "%opcje%"=="1" (
-    echo Optymalizacja polaczenia internetowego...
-    echo.
-    echo Ustawienia zakonczone.
+set /p "optymalizacja= Wybierz opcje (1-3): "
+if "%optymalizacja%"=="1" (
+    echo Optymalizacja połączenia internetowego...
+    netsh interface tcp set global autotuning=disabled
+    echo Optymalizacja zakonczona.
     pause
-    goto :DodatkoweOptymalizacje
+    goto :OptymalizacjaSystemu
 )
-if "%opcje%"=="2" (
-    echo Optymalizacja wydajnosci systemu...
-    echo.
-    echo Ustawienia zakonczone.
+if "%optymalizacja%"=="2" (
+    echo Optymalizacja wydajności systemu...
+    powercfg -h off
+    echo Optymalizacja zakonczona.
     pause
-    goto :DodatkoweOptymalizacje
+    goto :OptymalizacjaSystemu
 )
 goto :MenuGlowna
 
@@ -251,25 +251,66 @@ goto :MenuGlowna
 :UstawieniaBCD
 cls
 echo ============================================================
-echo             Ustawienia BCD
+echo                  Ustawienia BCD
 echo ============================================================
-bcdedit /set useplatformtick yes
-bcdedit /set disabledynamictick yes
-bcdedit /set bootstatuspolicy ignore
-bcdedit /set debug on
 echo.
-echo Ustawienia BCD zakonczone.
-pause
+echo [1] BCD Tweaks
+echo [2] Przywracanie domyslnych ustawien
+echo [3] Powrot do menu glownego
+echo.
+set /p "ustawieniaBCD= Wybierz opcję (1-3): "
+if "%ustawieniaBCD%"=="1" (
+    bcdedit /set useplatformtick yes
+    bcdedit /set disabledynamictick yes
+    bcdedit /set bootstatuspolicy ignore
+    bcdedit /set debug on
+    bcdedit /set {bootmgr} path \EFI\Microsoft\Boot\bootmgfw.efi
+    echo BCD Tweaks zakończone!
+    pause
+    goto :UstawieniaBCD
+)
+if "%ustawieniaBCD%"=="2" (
+    echo Przywracanie domyślnych ustawień BCD...
+    bcdedit /export C:\bcdbackup
+    bcdedit /import C:\bcdbackup
+    echo Przywracanie zakończone.
+    pause
+    goto :UstawieniaBCD
+)
+if "%ustawieniaBCD%"=="3" (
+    goto :MenuGlowna
+)
 goto :MenuGlowna
 
-:: Sekcja zmiany rejestru
+:: Sekcja modyfikacji rejestru
 :RegistryTweaks
 cls
 echo ============================================================
-echo             Ustawienia Rejestru
+echo                 Modyfikacje Rejestru
 echo ============================================================
 echo.
-echo Zmieniam ustawienia rejestru...
+echo [1] Wyłacz animacje systemowe
+echo [2] Zmien domyślny czas otwierania okien
+echo [3] Dodatkowa optymalizacja
+echo [4] Powrot do menu glownego
+echo.
+set /p "tweaks= Wybierz opcje (1-3): "
+if "%tweaks%"=="1" (
+    echo Wyłączanie animacji...
+    reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "VisualFXSetting" /t REG_SZ /d "2" /f
+    echo Animacje wyłączone.
+    pause
+    goto :RegistryTweaks
+)
+if "%tweaks%"=="2" (
+    echo Zmienianie czasu otwierania okien...
+    reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "MenuShowDelay" /t REG_SZ /d "0" /f
+    echo Czas otwierania okien zmieniony.
+    pause
+    goto :RegistryTweaks
+)
+if "%tweaks%"=="3" (
+    echo Dodatkowa optymalizacja (REG)
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "ConvertibleSlateMode" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "56" /f
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\usbxhci\Parameters" /v "ThreadPriority" /t REG_DWORD /d "31" /f
@@ -347,69 +388,60 @@ Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v 
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "SharingViolationDelay" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "SharingViolationRetries" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance" /v "MaintenanceDisabled" /t REG_DWORD /d "1" /f
+    echo Optymalizacja Skonczona! 
+    pause
+    goto :RegistryTweaks
 
-echo.
-echo Ustawienia rejestru zostaly zmienione.
-pause
 goto :MenuGlowna
 
-:: Sekcja dodatkowych ustawień optymalizacyjnych
+:: Sekcja dodatkowych optymalizacji
 :DodatkoweOptymalizacje
 cls
 echo ============================================================
-echo        Dodatkowe Ustawienia Optymalizacyjne
+echo            Dodatkowe Ustawienia Optymalizacyjne
 echo ============================================================
-echo Wyłączenie efektów wizualnych...
-reg add "HKCU\Control Panel\Desktop" /v "DragFullWindows" /t REG_SZ /d "0" /f
-reg add "HKCU\Control Panel\Desktop" /v "FontSmoothing" /t REG_SZ /d "0" /f
-reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_SZ /d "0" /f
-echo Zoptymalizowano ustawienia wizualne.
 echo.
-echo Optymalizacja zarządzania energią...
-powercfg -change -monitor-timeout-ac 0
-powercfg -change -disk-timeout-ac 0
-powercfg -change -standby-timeout-ac 0
-powercfg -change -hibernate-timeout-ac 0
-echo Ustawienia energii zostały zoptymalizowane.
+echo [1] Optymalizacja startu systemu
+echo [2] Zmiana domyślnych programów
+echo [3] Powrot do menu glownego
 echo.
-echo Dodatkowe optymalizacje systemowe zakończone.
-pause
+set /p "dodatkowe= Wybierz opcje (1-3): "
+if "%dodatkowe%"=="1" (
+    echo Optymalizacja startu systemu...
+    msconfig
+    echo Optymalizacja zakonczona.
+    pause
+    goto :DodatkoweOptymalizacje
+)
+if "%dodatkowe%"=="2" (
+    echo Zmienianie domyślnych programów...
+    control /name Microsoft.DefaultPrograms
+    echo Zmiana domyślnych programów zakonczona.
+    pause
+    goto :DodatkoweOptymalizacje
+)
 goto :MenuGlowna
 
-:: Sekcja Pingu
+:: Sekcja Ping
 :Ping
 cls
 echo ============================================================
-echo                  Ping
+echo                  Pingowanie
 echo ============================================================
-echo [1] Ping Google
-echo [2] Ping Cloudfare
-echo [3] Powrot do menu glownego
 echo.
-set /p "Ping= Wybierz opcje (1-3): "
-if "%Ping%"=="1" (
-echo    Sprawdzanie pingu...
-    ping 8.8.8.8 
-echo    Sprawdzanie pingu zakończone
-    pause
-    goto :Ping
-)
-if "%Ping%"=="2" (
-echo    Sprawdzanie pingu...
-    ping 1.1.1.1
-echo    Sprawdzanie pingu zakończone
-    pause
-    goto :Ping
-)
+set /p "adres=Podaj adres do pingowania: "
+ping %adres%
+echo.
+pause
 goto :MenuGlowna
 
 :: Sekcja wyboru koloru konsoli
-:WybierzKolor
+:Wybierzkolor
 cls
 echo ============================================================
-echo                 Wybor Koloru Konsoli
+echo                Wybierz kolor konsoli
 echo ============================================================
-echo Wybierz kolor tekstu na czarnym tle:
+echo Wybierz kolor tekstu:
 echo.
 echo 0 = Czarny      8 = Szary
 echo 1 = Niebieski   9 = Jasny Niebieski
@@ -432,16 +464,18 @@ cls
 echo ============================================================
 echo                  Tworca
 echo ============================================================
-echo Autor: zupekk
-echo Wersja: 0.1 Beta
-echo Bio: guns.lol/zupek
+echo.
+echo [*] Stworzone przez: zupek
+echo [*] Bio: guns.lol/zupek
+echo [*] Data wydania: ???
+echo [*] Wersja: 0.1 Beta
+echo [*] Discord: ???
 echo.
 pause
 goto :MenuGlowna
 
-:: Sekcja zakończenia
+:: Sekcja końca
 :Koniec
-echo Dziekuje za korzystanie z systemu. Do widzenia!
+echo Dziekujemy za skorzystanie z systemu Beta! 
 pause
 exit
-
