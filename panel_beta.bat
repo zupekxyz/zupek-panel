@@ -32,7 +32,7 @@ if %errorlevel% equ 1 (
 :: Dalszy kod 
 
 @echo off
-title Pc panel / opt
+title Zupexy panel opt.
 
 :: Konsola powitalna
 color 00
@@ -64,11 +64,11 @@ echo ============================================================
 echo                Zaawansowany System Konsoli
 echo ============================================================
 echo.
-echo [?] Ostatni update: 03.11.2024  23:38
+echo [?] Ostatni update: 04.11.2024  23:01
 echo [-] 0.5 Beta 
 echo [+] Dodano Auto update!
 echo [+] Update wybierania pingu
-echo [+] wprowadzono poprawki w kilku punktach!
+echo [+] Naprawiono wchodzenie do menu w punkcie 9 
 echo [✯] !!! Discord: https://discord.gg/Z2cJ6Vnq3k !!!
 echo.
 echo [1] Przegladanie plikow i folderow
@@ -294,7 +294,7 @@ echo [2] Zmien domyślny czas otwierania okien
 echo [3] Dodatkowa optymalizacja
 echo [4] Powrot do menu glownego
 echo.
-set /p "tweaks= Wybierz opcje (1-3): "
+set /p "tweaks= Wybierz opcje (1-4): "
 if "%tweaks%"=="1" (
     echo Wyłączanie animacji...
     reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v "VisualFXSetting" /t REG_SZ /d "2" /f
@@ -310,7 +310,7 @@ if "%tweaks%"=="2" (
     goto :RegistryTweaks
 )
 if "%tweaks%"=="3" (
-    echo Dodatkowa optymalizacja (REG)
+    echo Dodatkowa optymalizacja REG
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "ConvertibleSlateMode" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "56" /f
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\usbxhci\Parameters" /v "ThreadPriority" /t REG_DWORD /d "31" /f
@@ -388,10 +388,10 @@ Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v 
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "SharingViolationDelay" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "SharingViolationRetries" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance" /v "MaintenanceDisabled" /t REG_DWORD /d "1" /f
-    echo Optymalizacja Skonczona! 
+    echo Optymalizacja Skonczona!
     pause
     goto :RegistryTweaks
-
+)
 goto :MenuGlowna
 
 :: Sekcja dodatkowych optymalizacji
