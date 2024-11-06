@@ -25,27 +25,27 @@ if %errorlevel% equ 1 (
     start "" "%local_file%"
     exit /b
 ) else (
-    echo Masz już najnowszą wersję.
+    echo Masz już najnowsza wersję.
     del "%temp_file%"
 )
 
 :: Dalszy kod 
 
 @echo off
-title Zupexy panel opt.
+title Zupexy Multi panel.
 
 :: Konsola powitalna
 color 00
-echo    ███████╗██╗   ██╗██████╗ ███████╗██╗  ██╗██╗  ██╗
-echo    ╚══███╔╝██║   ██║██╔══██╗██╔════╝██║ ██╔╝██║ ██╔╝
-echo      ███╔╝ ██║   ██║██████╔╝█████╗  █████╔╝ █████╔╝ 
-echo     ███╔╝  ██║   ██║██╔═══╝ ██╔══╝  ██╔═██╗ ██╔═██╗ 
-echo     ███████╗╚██████╔╝██║     ███████╗██║  ██╗██║  ██╗
-echo     ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+echo [90m    ███████╗██╗   ██╗██████╗ ███████╗██╗  ██╗██╗  ██╗
+echo [90m   ╚══███╔╝██║   ██║██╔══██╗██╔════╝██║ ██╔╝██║ ██╔╝
+echo [90m     ███╔╝ ██║   ██║██████╔╝█████╗  █████╔╝ █████╔╝ 
+echo [90m    ███╔╝  ██║   ██║██╔═══╝ ██╔══╝  ██╔═██╗ ██╔═██╗ 
+echo [90m    ███████╗╚██████╔╝██║     ███████╗██║  ██╗██║  ██╗
+echo [90m    ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
 echo.
-echo ============================================================
-echo                Zaawansowany System Konsoli
-echo ============================================================
+echo [33m ============================================================
+echo [90m               Zaawansowany System Konsoli
+echo [33m ============================================================ [90m
 pause
 
 :: Ustawienia plików
@@ -60,47 +60,46 @@ if not exist "%katalog_docelowy%" mkdir "%katalog_docelowy%"
 :: Funkcja menu głównego
 :MenuGlowna
 cls
-echo ============================================================
-echo                Zaawansowany System Konsoli
-echo ============================================================
+echo [33m ============================================================
+echo [90m [?]               Last update  06.11.2024
+echo [90m [-] version 0.5 Beta
+echo [90m [+] added new UI [Beta]
+echo [90m [+] added Discord webhooks text
+echo [90m [✯] Discord: https://discord.gg/Z2cJ6Vnq3k
+echo [33m ============================================================
 echo.
-echo [?] Ostatni update: 04.11.2024  23:01
-echo [-] 0.5 Beta 
-echo [+] Dodano Auto update!
-echo [+] Update wybierania pingu
-echo [+] Naprawiono wchodzenie do menu w punkcie 9 
-echo [✯] !!! Discord: https://discord.gg/Z2cJ6Vnq3k !!!
 echo.
-echo [1] Przegladanie plikow i folderow
-echo [2] Tworzenie kopii zapasowej pliku
-echo [3] Wyswietlanie dziennika
-echo [4] Wyczysc dziennik
-echo [5] Ustawienia
-echo [6] Czyszczenie niepotrzebnych plików
-echo [7] Optymalizacja systemu Windows
-echo [8] Ustawienia BCD
-echo [9] Registry Tweaks
-echo [10] Dodatkowe ustawienia optymalizacyjne
-echo [11] Ping
-echo [12] Wybor koloru konsoli
-echo [13] Tworca
-echo [14] Wyjscie
+echo [90m   TWEAK / CLEANER / OTHER                                     TOOL / ETC
+echo [33m  -------------------------                                   ------------
+echo [34m[1] Czyszczenie niepotrzebnych plików                    [7] Przegladanie plikow i folderow
+echo [34m[2] Optymalizacja systemu Windows                         [8] Tworzenie kopii zapasowej pliku
+echo [34m[3] Ustawienia BCD                                        [9] Wyswietlanie dziennika
+echo [34m[4] Registry Tweaks                                       [10] Wyczysc dziennik
+echo [34m[5] Dodatkowe ustawienia optymalizacyjne                  [11] Ustawienia
+echo [34m[6] Ping                                                  [12] Wybor koloru konsoli
 echo.
-set /p "wybor= Wybierz opcje (1-14): "
-if "%wybor%"=="1" goto :Przegladanie
-if "%wybor%"=="2" goto :KopiaZapasowa
-if "%wybor%"=="3" goto :WyswietlDziennik
-if "%wybor%"=="4" goto :WyczyscDziennik
-if "%wybor%"=="5" goto :Ustawienia
-if "%wybor%"=="6" goto :CzyszczenieSystemu
-if "%wybor%"=="7" goto :OptymalizacjaSystemu
-if "%wybor%"=="8" goto :UstawieniaBCD
-if "%wybor%"=="9" goto :RegistryTweaks
-if "%wybor%"=="10" goto :DodatkoweOptymalizacje
-if "%wybor%"=="11" goto :Ping
+echo [90m   DISCORD / OTHER                                             INFO / ETC
+echo [33m  -----------------                                           ------------
+echo [32m[13] Discord URL Webhooks                                   [15] Tworca
+echo [32m[14] Napisz wiadomosc przez Webhooks                        [16] wyjscie
+echo.
+set /p "wybor=[90m Type option (1-16): "
+if "%wybor%"=="1" goto :CzyszczenieSystemu
+if "%wybor%"=="2" goto :OptymalizacjaSystemu
+if "%wybor%"=="3" goto :UstawieniaBCD
+if "%wybor%"=="4" goto RegistryTweaks
+if "%wybor%"=="5" goto :DodatkoweOptymalizacje
+if "%wybor%"=="6" goto :Ping
+if "%wybor%"=="7" goto :Przegladanie
+if "%wybor%"=="8" goto :KopiaZapasowa
+if "%wybor%"=="9" goto :WyswietlDziennik
+if "%wybor%"=="10" goto :WyczyscDziennik
+if "%wybor%"=="11" goto :Ustawienia
 if "%wybor%"=="12" goto :Wybierzkolor
-if "%wybor%"=="13" goto :Tworca
-if "%wybor%"=="14" goto :Koniec
+if "%wybor%"=="13" goto :Webhook
+if "%wybor%"=="14" goto :text
+if "%wybor%"=="15" goto :Tworca
+if "%wybor%"=="16" goto :Koniec
 goto :MenuGlowna
 
 :: Sekcja przeglądania plików i folderów
@@ -458,6 +457,47 @@ echo Kolor zmieniony! Nacisnij dowolny klawisz, aby powrocic do menu...
 pause >nul
 goto :MenuGlowna
 
+:: Sekcja webhooks
+: Webhook
+cls
+echo ============================================================
+echo                  Webhook ❘ URL
+echo ============================================================
+echo.
+set /p "NEW_WEBHOOK_URL=Podaj nowy URL webhooka: "
+set WEBHOOK_URL=%NEW_WEBHOOK_URL%
+
+:: Zapisz nowy URL w historii
+echo %WEBHOOK_URL% >> webhook_history.txt
+echo Zmieniono URL webhooka na: %WEBHOOK_URL%
+pause
+goto :MenuGlowna
+
+:: Sekcja textu 
+: text
+cls
+echo ============================================================
+echo                        TEXT
+echo ============================================================
+echo.
+echo Wpisz wiadomoc a nastepnie wyslij enter by ja wyslac
+echo Wpisz "exit", aby powrocic do Menu glownego
+echo.
+setlocal enabledelayedexpansion
+
+:WiadomoscLoop
+set /p "MESSAGE=Twoja wiadomość: "
+if "%MESSAGE%"=="exit" goto :MenuGlowna
+
+:: Zamień " na \" aby poprawnie wysłać JSON
+set MESSAGE_JSON={\"content\":\"%MESSAGE%\"}
+
+:: Wyślij wiadomość za pomocą curl
+curl -H "Content-Type: application/json" -X POST -d "%MESSAGE_JSON%" %WEBHOOK_URL%
+
+echo Wiadomość wysłana: %MESSAGE%
+goto WiadomoscLoop
+
 :: Sekcja twórcy
 :Tworca
 cls
@@ -479,4 +519,3 @@ goto :MenuGlowna
 echo Dziekujemy za skorzystanie z systemu Beta! 
 pause
 exit
-
