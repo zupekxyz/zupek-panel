@@ -25,7 +25,7 @@ if %errorlevel% equ 1 (
     start "" "%local_file%"
     exit /b
 ) else (
-    echo Masz już najnowsza wersję.
+    echo Masz juz najnowsza wersje.
     del "%temp_file%"
 )
 
@@ -61,7 +61,7 @@ if not exist "%katalog_docelowy%" mkdir "%katalog_docelowy%"
 :MenuGlowna
 cls
 echo [33m ============================================================
-echo [90m [?]               Last update  06.11.2024
+echo [90m [?]        Last update  06.11.2024 20:27
 echo [90m [-] version 0.5 Beta
 echo [90m [+] added new UI [Beta]
 echo [90m [+] added Discord webhooks text
