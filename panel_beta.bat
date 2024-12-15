@@ -61,10 +61,10 @@ if not exist "%katalog_docelowy%" mkdir "%katalog_docelowy%"
 :MenuGlowna
 cls
 echo [33m ============================================================
-echo [90m [?]        Last update  06.11.2024 20:27
-echo [90m [-] version 0.5 Beta
+echo [90m [?]        Last update  15.12.2024 15:45
+echo [90m [-] version 0.7 Beta
 echo [90m [+] added new UI [Beta]
-echo [90m [+] added Discord webhooks text
+echo [90m [+] added [17] my console
 echo [90m [✯] Discord: https://discord.gg/Z2cJ6Vnq3k
 echo [33m ============================================================
 echo.
@@ -82,6 +82,7 @@ echo [90m   DISCORD / OTHER                                             INFO / 
 echo [33m  -----------------                                           ------------
 echo [32m[13] Discord URL Webhooks                                   [15] Tworca
 echo [32m[14] Napisz wiadomosc przez Webhooks                        [16] wyjscie
+echo [32m                                                            [17] Console .py
 echo.
 set /p "wybor=[90m Type option (1-16): "
 if "%wybor%"=="1" goto :CzyszczenieSystemu
@@ -100,6 +101,7 @@ if "%wybor%"=="13" goto :Webhook
 if "%wybor%"=="14" goto :text
 if "%wybor%"=="15" goto :Tworca
 if "%wybor%"=="16" goto :Koniec
+if "%wybor%"=="17" goto :Console
 goto :MenuGlowna
 
 :: Sekcja przeglądania plików i folderów
@@ -519,3 +521,19 @@ goto :MenuGlowna
 echo Dziekujemy za skorzystanie z systemu Beta! 
 pause
 exit
+
+
+:: CONSOLE
+:Console
+echo ============================================================
+echo                 Console .py
+echo ============================================================
+echo.
+echo [?] czy chcesz zainstalować konsole .py
+echo [1] TAK
+echo [2] Nie
+set /p "dodatkowe= Wybierz opcje (1-2): "
+if "%dodatkowe%"=="1" (
+start https://github.com/zupekxyz/console-/tree/main
+)
+goto :MenuGlowna
